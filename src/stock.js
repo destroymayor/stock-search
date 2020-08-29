@@ -22,7 +22,7 @@ const getStockInfo = async (stock) => {
     ).toFixed(2);
 
     console.log(`${stockNumber} / ${stockName}`);
-    console.log(`Deal price:     ${dealPrice} Amount: ${dealAmount}`);
+    console.log(`Deal price    : ${dealPrice} Amount: ${dealAmount}`);
     console.log(`Highs and lows: ${dailyPricing} (${dailyPricingPercentage}%)`);
   }
 };
