@@ -20,11 +20,27 @@ const getStockInfo = async (stock) => {
       (dealPrice - yesterdayClosingPrice) /
       (yesterdayClosingPrice / 100)
     ).toFixed(2);
+    const matchingTime = stockInfo.t;
 
-    console.log(`${stockNumber} / ${stockName}`);
-    console.log(`Deal price    : ${dealPrice} Amount: ${dealAmount}`);
+    console.log(`${stockName}(${stockNumber}) --------------------`);
     console.log(`Highs and lows: ${dailyPricing} (${dailyPricingPercentage}%)`);
+    console.log(`Price         : ${dealPrice}`);
+    console.log(`Volume        : ${dealAmount}`);
+    console.log(`Matching time : ${matchingTime}`);
+    console.log(` `);
   }
 };
 
-module.exports = getStockInfo;
+const getStockLink = (stockCode) => {
+  const getStockCodeList = stockCode.split(',');
+
+  if (getStockCodeList.length > 3) return console.log('一次只能查詢三檔');
+
+  Promise.all(
+    getStockCodeList.map(async (stock) => {
+      await getStockInfo(stock);
+    }),
+  );
+};
+
+module.exports = getStockLink;
